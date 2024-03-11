@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Disable Jetstream login and register routes.
+Route::middleware(['web', 'auth', 'verified'])->group(function () {
+    Route::match(['get', 'post'], 'login', function () {
+        abort(404);
+    });
+    Route::match(['get', 'post'], 'register', function () {
+        abort(404);
+    });
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/', function () {
+    return redirect('/admin');
 });
