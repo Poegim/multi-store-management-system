@@ -21,6 +21,9 @@ Route::middleware(['web', 'auth', 'verified'])->group(function () {
     Route::match(['get', 'post'], 'register', function () {
         abort(404)->name('register');
     });
+    Route::match(['get', 'post'], 'user/profile', function () {
+        abort(404)->name('profile');
+    });
 });
 
 Route::get('/', function () {
