@@ -27,7 +27,7 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('email')->email()->unique()->required(),
+                Forms\Components\TextInput::make('email')->email()->unique(ignoreRecord: true)->required(),
                 Password::make('password')
                 ->rules(['confirmed', 'min:8'])
                 ->required(),

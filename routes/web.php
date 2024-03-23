@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web', 'auth', 'verified'])->group(function () {
     Route::match(['get', 'post'], 'login', function () {
         abort(404);
-    });
+    })->name('login');
     Route::match(['get', 'post'], 'register', function () {
-        abort(404);
+        abort(404)->name('register');
     });
 });
 
